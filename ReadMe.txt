@@ -1,4 +1,4 @@
 Equipo LG, formado por:
-  Javier Veron
+  Javier Verón
   Jorge Chueca
-  Luis Rios
+  Luis Ríos
