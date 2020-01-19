@@ -60,7 +60,7 @@ class SpaceInvader(object):
 
         while observation_num < num_frames:
             if observation_num % 1000 == 999:
-                print(("******************* Executing loop %d of %d *******************" %observation_num num_frames))
+                print(("******************* Executing loop %d *******************" %observation_num))
 
             # Slowly decay the learning rate
             if epsilon > FINAL_EPSILON:
