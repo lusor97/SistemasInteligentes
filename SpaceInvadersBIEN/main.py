@@ -2,7 +2,7 @@ import argparse
 from space_invaders import SpaceInvader
 
 # Hyperparameters
-NUM_FRAME = 100000  # 1000000
+NUM_FRAME = 5000  # 1000000
 
 parser = argparse.ArgumentParser(description="Train and test different networks on Space Invaders")
 

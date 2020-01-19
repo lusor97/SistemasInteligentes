@@ -5,10 +5,6 @@ import numpy as np
 from duel_Q import DuelQ
 from deep_Q import DeepQ
 
-import matplotlib.pyplot as plt
-from IPython import display as ipythondisplay
-from pyvirtualdisplay import Display
-
 # List of hyper-parameters and constants
 BUFFER_SIZE = 100000
 MINIBATCH_SIZE = 32
@@ -108,20 +104,17 @@ class SpaceInvader(object):
     def simulate(self, path = "", save = False):
         """Simulates game"""
         
-        display = Display(visible=0, size=(400, 300))
-        display.start()
-
         done = False
         tot_award = 0
         if save:
             #self.env.monitor.start(path, force=True)
             self.env = gym.wrappers.Monitor(self.env, path, force=True)
         self.env.reset()
-        self.env.render()
+        #self.env.render()
         while not done:
             state = self.convert_process_buffer()
             predict_movement = self.deep_q.predict_movement(state, 0)[0]
-            self.env.render()
+            #self.env.render()
             observation, reward, done, _ = self.env.step(predict_movement)
             tot_award += reward
             self.process_buffer.append(observation)

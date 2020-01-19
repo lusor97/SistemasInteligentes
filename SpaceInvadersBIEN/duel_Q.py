@@ -5,7 +5,7 @@ from keras.models import load_model, Sequential, Model
 from keras.layers.convolutional import Convolution2D
 from keras.optimizers import Adam
 from keras.layers.core import Activation, Dropout, Flatten, Dense
-from keras.layers import merge, Input
+from keras.layers import concatenate, Input, Lambda
 from keras import backend as K
 from replay_buffer import ReplayBuffer
 
@@ -32,7 +32,8 @@ class DuelQ(object):
         advantage = Dense(NUM_ACTIONS)(fc1)
         fc2 = Dense(512)(flatten)
         value = Dense(1)(fc2)
-        policy = merge([advantage, value], mode = lambda x: x[0]-K.mean(x[0])+x[1], output_shape = (NUM_ACTIONS,))
+        policy = Lambda(lambda x: x[0]-K.mean(x[0])+x[1], output_shape=(NUM_ACTIONS,))([advantage, value])
+        #policy = merge([advantage, value], mode = lambda x: x[0]-K.mean(x[0])+x[1], output_shape = (NUM_ACTIONS,))
         # policy = Dense(NUM_ACTIONS)(merge_layer)
 
         self.model = Model(input=[input_layer], output=[policy])
