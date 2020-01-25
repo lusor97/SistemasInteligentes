@@ -33,9 +33,7 @@ class DuelQ(object):
         fc2 = Dense(512)(flatten)
         value = Dense(1)(fc2)
         policy = Lambda(lambda x: x[0]-K.mean(x[0])+x[1], output_shape=(NUM_ACTIONS,))([advantage, value])
-        #policy = merge([advantage, value], mode = lambda x: x[0]-K.mean(x[0])+x[1], output_shape = (NUM_ACTIONS,))
-        # policy = Dense(NUM_ACTIONS)(merge_layer)
-
+        
         self.model = Model(input=[input_layer], output=[policy])
         self.model.compile(loss='mse', optimizer=Adam(lr=0.000001))
 
@@ -86,13 +84,3 @@ class DuelQ(object):
     def target_train(self):
         model_weights = self.model.get_weights()
         self.target_model.set_weights(model_weights)
-
-
-
-if __name__ == "__main__":
-    print("Haven't finished implementing yet...'")
-    space_invader = SpaceInvader()
-    space_invader.load_network("duel_saved.h5")
-    # print space_invader.calculate_mean()
-    space_invader.simulate("duel_q_video_2", True)
-    # space_invader.train(TOT_FRAME)

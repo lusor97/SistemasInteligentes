@@ -4,8 +4,8 @@
 -	After doing that, run the first cell (which install everything you need).
 -	Open the "Files" tab and click on "Upload". You will have to select "deep_Q.py",
 	"duel_Q.py", "main.py", "pacman.py" and "replay_buffer.py" for making it work.
-	If you also want to be able to continue from the point we trained to, upload also
-	"saved_DQN.h5" and "saved_DDQN.h5".
+	Upload also	"saved_DQN.h5" and "saved_DDQN.h5", which contains the network up to
+	the point we trained it to.
 -	Once you have uploaded everything, you have to know what the next cell does: 
 	"!python main.py" executes the "main.py" file with the parameters you entered.
 	"-n" is the algorithm and NN you want to use (change it between "DDQN" or "DQN").
